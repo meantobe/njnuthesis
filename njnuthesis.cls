@@ -98,32 +98,26 @@
   \def\njnu@value@titlemark{\MakeUppercase{#1}}} % 标题
 \renewcommand\author[1]{\def\njnu@value@author{#1}} % 作者
 \newcommand\advisor[1]{\def\njnu@value@advisor{#1}} % 指导教师
-\newcommand\advisorinstitute[1]{\def\njnu@value@advisorinstitute{#1}}
-\newcommand\major[1]{\def\njnu@value@major{#1}}
+\newcommand\institute[1]{\def\njnu@value@institute{#1}} % 培养单位
+\newcommand\discipline[1]{\def\njnu@value@discipline{#1}} % 一级学科
+\newcommand\subdiscipline[1]{\def\njnu@value@subdiscipline{#1}} % 二级学科
 \newcommand\submitdate[1]{\def\njnu@value@submitdate{#1}} % 完成时间
 \newcommand\defenddate[1]{\def\njnu@value@defenddate{#1}} % 答辩时间
-\newcommand\institute[1]{\def\njnu@value@institute{#1}}
 
 % 绘制中文标题页
 \renewcommand\maketitle{
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \bf\songti\zihao{-4}
-      \njnu@label@classification~
-      \njnuunderline[100pt]{\njnu@value@classification}
+    \bf\songti\zihao{4}
+      \njnu@label@serialnumber~
+      \njnuunderline[100pt]{\njnu@value@serialnumber}
         \hfill
       \njnu@label@confidential~
       \njnuunderline[100pt]{\njnu@value@confidential}
     \vskip 10pt
-      \njnu@label@UDC~
-      \njnuunderline[108pt]{\njnu@value@UDC}
-        \hfill
-      \njnu@label@serialnumber~
-      \njnuunderline[100pt]{\njnu@value@serialnumber}
     \vskip \stretch{2}
-      \bf\songti\zihao{-1} \njnu@value@school \\
-      \njnu@value@degree
+      \bf\songti\zihao{-1} \njnu@value@school
   \end{center}
   \clearpage
 }
