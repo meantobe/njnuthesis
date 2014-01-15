@@ -9,7 +9,33 @@
 
 %% 封面部分
 
+  % 中文封面内容
+  \serialnumber{} % 索取号
+  \confidential{} % 密级
+  \degree{硕士} % 学位级别
+  \title{南京师范大学学位论文~\LaTeX{}~模板} % 标题
+  \author{} % 作者
+  \advisor{} % 指导教师
+  \institute{地理科学学院} % 培养单位
+  \discipline{地理学} % 一级学科
+  \subdiscipline{地图学与地理信息系统} % 二级学科
+  \submitdate{\today} % 完成时间
+  \defenddate{\today} % 答辩时间
+  
+  \maketitle
+
+%% 前言部分
+\frontmatter
+  % 目录
+  \tableofcontents
+  % 插图目录
+  \listoffigures
+  % 表格目录
+  \listoftables
+
+  
 %% 正文部分
+\mainmatter
   \include{chapter/chap-intro}
 
 %% 附件部分
