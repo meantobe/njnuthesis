@@ -19,6 +19,8 @@
 \def\version{0.1}
 
 % Option switches
+\newif\ifnjnu@typeinfo \njnu@typeinfotrue
+\DeclareOption{notypeinfo}{\njnu@typeinfofalse}
 \newif\ifnjnu@bachelor  \njnu@bachelorfalse
 \newif\ifnjnu@master    \njnu@masterfalse
 \newif\ifnjnu@doctor    \njnu@doctorfalse
@@ -111,15 +113,55 @@
   \begin{center}
     \bf\songti\zihao{4}
       \njnu@label@serialnumber~
-      \njnuunderline[100pt]{\njnu@value@serialnumber}
+      \njnuunderline[100pt]{\njnu@value@serialnumber} % 索取号
         \hfill
       \njnu@label@confidential~
-      \njnuunderline[100pt]{\njnu@value@confidential}
-    \vskip 10pt
+      \njnuunderline[100pt]{\njnu@value@confidential} % 密级
+    \vskip 40pt
+      \includegraphics[width=85mm]{njnutitle}
     \vskip \stretch{2}
-      \bf\songti\zihao{-1} \njnu@value@school
+      \bf\heiti\zihao{-1} \njnu@value@degree\njnu@label@thesis
+    \vskip \stretch{2}
+      \includegraphics[width=24mm]{njnulogo}
+    \vskip \stretch{1}
+      \bf\heiti\zihao{-1} \njnu@value@title
+    \vskip \stretch{2}
+    \begin{tabular}{lc}
+      \bf\songti\zihao{4}\njnu@label@author ： &
+      \bf\songti\zihao{4}\njnu@value@author
+    \\
+      \bf\songti\zihao{4}\njnu@label@advisor ： &
+      \bf\songti\zihao{4}\njnu@value@advisor
+    \\
+      \bf\songti\zihao{4}\njnu@label@institute ： &
+      \bf\songti\zihao{4}\njnu@value@institute
+    \\
+      \bf\songti\zihao{4}\njnu@label@discipline ： &
+      \bf\songti\zihao{4}\njnu@value@discipline
+    \\
+      \bf\songti\zihao{4}\njnu@label@subdiscipline ： &
+      \bf\songti\zihao{4}\njnu@value@subdiscipline
+    \\
+      \bf\songti\zihao{4}\njnu@label@submitdate ： &
+      \bf\songti\zihao{4}\njnu@value@submitdate
+    \\
+      \bf\songti\zihao{4}\njnu@label@defenddate ： &
+      \bf\songti\zihao{4}\njnu@value@defenddate
+    \end{tabular}
   \end{center}
   \clearpage
+  \if@twoside
+    \thispagestyle{empty}
+    \ifnjnu@typeinfo
+      \vspace*{\stretch{1}}
+      \begin{footnotesize}
+        \noindent
+        Typeset by \LaTeXe{} at \CTEX@todayold \\
+        With package \texttt{NjNuThesis} \njnufileversion{} of C\TeX{}.ORG
+      \end{footnotesize}
+    \fi
+    \cleardoublepage
+  \fi
 }
 
 %% 复杂表格
