@@ -15,6 +15,7 @@
 \ProvidesClass{njnuthesis}
 [2014/01/14 v0.1 Nanjing Normal University Thesis Template]
 
+\hyphenation{NjNu-Thesis}
 \def\njnuthesis{\textsc{NjNuThesis}}
 \def\version{0.1}
 
@@ -26,34 +27,59 @@
 \newif\ifnjnu@doctor    \njnu@doctorfalse
 
 % class options
-\DeclareOption{bachelor}    {\njnu@bachelortrue}
-\DeclareOption{master}      {\njnu@mastertrue}
-\DeclareOption{doctor}      {\njnu@doctortrue}
+\DeclareOption{bachelor}{\njnu@bachelortrue}
+\DeclareOption{master}{\njnu@mastertrue}
+\DeclareOption{doctor}{\njnu@doctortrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[cs4size,a4paper,fancyhdr,fntef]{ctexbook}[2005/11/25]
+\ifnjnu@bachelor\relax\else
+  \ifnjnu@master\relax\else
+    \ifnjnu@doctor\relax\else
+      \ClassError{njnuthesis}%
+                 {You have to specify one of thesis options: bachelor, master or doctor.}{}
+    \fi
+  \fi
+\fi
 %% check pdfTeX mode
 \RequirePackage{ifpdf,ifxetex}
 %% math packages
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
 %% graphics packages
 \RequirePackage{graphicx}
-%% sort and compress citations
-\RequirePackage[sort&compress,numbers]{natbib}
+\RequirePackage{booktabs} % 三线表
+\RequirePackage[sort&compress,numbers]{natbib} % sort and compress citations
 % 上标引用
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
-%% packages and settings depend on PDF mode
+
 \ifxetex
   \RequirePackage[xetex]{hyperref}
   \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\else
+  \ifpdf
+    \RequirePackage[pdftex]{hyperref}
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+  \fi
 \fi
-\hypersetup{CJKbookmarks,%
-       bookmarksnumbered,%
-              colorlinks,%
-               linkcolor=blue,%
-               citecolor=blue,%
-              plainpages=false,%
-            pdfstartview=FitH}
+
+\ifxetex
+  \hypersetup{%
+    CJKbookmarks=true}
+\else
+  \hypersetup{%
+    unicode=true,
+    CJKbookmarks=false}
+\fi
+\hypersetup{%
+   bookmarksnumbered=true,
+       bookmarksopen=true,
+  bookmarksopenlevel=1,
+          breaklinks=true,
+          colorlinks=false,
+          plainpages=false,
+       pdfpagelabels,
+           pdfborder=0 0 0}
+
 \AtEndOfPackage{\makeatletter\input{njnuthesis.cfg}\makeatother}
 %% 页边距设置
 \oddsidemargin 0.5 true cm
@@ -73,6 +99,20 @@
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \thispagestyle{empty}%
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+% set font
+%\setmainfont[Ligatures=TeX]{Times New Roman}
+%\setCJKmainfont{SimSun}
+%% 并列子图
+\RequirePackage{subfigure}
+% ccaption -- bicaption
+\RequirePackage{ccaption}
+\captiondelim{\ }
+\captionnamefont{\kaishu\small}
+\captiontitlefont{\kaishu\small}
+
+%  参考文献风格 GBT7714-2005
+\bibliographystyle{GBT7714-2005NLang-UTF8}
 
 \newcommand\njnuspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 
@@ -157,45 +197,33 @@
       \begin{footnotesize}
         \noindent
         Typeset by \LaTeXe{} at \CTEX@todayold \\
-        With package \texttt{NjNuThesis} \njnufileversion{} of C\TeX{}.ORG
+        With package \texttt{NjNuThesis} \njnufileversion{} of meantobe
       \end{footnotesize}
     \fi
     \cleardoublepage
   \fi
 }
 
-%% 复杂表格
-\RequirePackage{threeparttable}
-\RequirePackage{dcolumn}
-\RequirePackage{multirow}
-\RequirePackage{booktabs}
-\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
-
-\ifnjnu@bachelor\relax\else
-  \ifnjnu@master\relax\else
-    \ifnjnu@doctor\relax\else
-      \ClassError{njnuthesis}%
-                 {You have to specify one of thesis options: bachelor, master or doctor.}{}
-    \fi
+% 原创性声明
+\newcommand\makeDeclareOriginal{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+  {\bf\zihao{3} \njnu@value@school}\\
+  {\bf\zihao{3} \njnu@label@original}
+  \end{center}
+  \vskip 10pt
+  {\zihao{-4}\njnu@label@originalcontent}
+  \vskip 60pt
+  \hspace{13em}\njnu@label@authorsign\hrulefill\hspace{1.5em}
+  \vskip 15pt
+  \hspace{16em}\njnu@label@originalDate\hspace{1em}
+  \clearpage
+  \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
   \fi
-\fi
-
-% set font
-\setmainfont[Ligatures=TeX]{Times New Roman}
-\setCJKmainfont{SimSun}
-
-%% graphics packages
-\RequirePackage{graphicx}
-%% 并列子图
-\RequirePackage{subfigure}
-% ccaption -- bicaption
-\RequirePackage{ccaption}
-\captiondelim{\ }
-\captionnamefont{\kaishu\small}
-\captiontitlefont{\kaishu\small}
-
-%  参考文献风格 GBT7714-2005
-\bibliographystyle{GBT7714-2005NLang-UTF8}
+}
 
 % 设置正文页页眉页脚风格
 \pagestyle{fancy}
@@ -263,7 +291,7 @@
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
       {\leavevmode
-       \large \bfseries #1
+       \large \bfseries #1r
        \leaders\hbox{$\m@th\mkern 1.5mu\cdot\mkern 1.5mu$}
        \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
        \nobreak
