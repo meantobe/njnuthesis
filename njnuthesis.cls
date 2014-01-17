@@ -151,17 +151,17 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \bf\songti\zihao{4}
-      \njnu@label@serialnumber~
+    \songti\zihao{4}
+      \njnu@label@serialnumber~：
       \njnuunderline[100pt]{\njnu@value@serialnumber} % 索取号
         \hfill
-      \njnu@label@confidential~
+      \njnu@label@confidential~：
       \njnuunderline[100pt]{\njnu@value@confidential} % 密级
     \vskip 40pt
-      \includegraphics[width=85mm]{njnutitle}
-    \vskip \stretch{2}
+      \includegraphics[width=92mm]{njnutitle}
+    \vskip 20pt
       \bf\heiti\zihao{-1} \njnu@value@degree\njnu@label@thesis
-    \vskip \stretch{2}
+    \vskip 20pt
       \includegraphics[width=24mm]{njnulogo}
     \vskip \stretch{1}
       \bf\heiti\zihao{-1} \njnu@value@title
@@ -188,6 +188,7 @@
       \bf\songti\zihao{4}\njnu@label@defenddate ： &
       \bf\songti\zihao{4}\njnu@value@defenddate
     \end{tabular}
+    \vskip 40pt
   \end{center}
   \clearpage
   \if@twoside
@@ -209,15 +210,36 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \njnu@value@school}\\
-  {\bf\zihao{3} \njnu@label@original}
+    {\bf\zihao{2} \njnu@label@original}
   \end{center}
   \vskip 10pt
   {\zihao{-4}\njnu@label@originalcontent}
+  %\vskip 60pt
+  %\hspace{13em}\njnu@label@authorsign\hrulefill\hspace{1.5em}
+  %\vskip 15pt
+  %\hspace{16em}\njnu@label@originalDate\hspace{1em}
+  \clearpage
+  \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+  \fi
+}
+
+% 授权声明
+\newcommand\makeDeclareAuthorization{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+  {\bf\zihao{3} \njnu@value@school}\\
+  {\bf\zihao{3} \njnu@label@authorization}
+  \end{center}
+  \vskip 10pt
+  {\zihao{-4} \njnu@label@authorizationcontent}
   \vskip 60pt
-  \hspace{13em}\njnu@label@authorsign\hrulefill\hspace{1.5em}
+  
+  \njnu@label@authorsign\hrulefill\hspace{3em}\njnu@label@Supervisorsign\hrulefill
   \vskip 15pt
-  \hspace{16em}\njnu@label@originalDate\hspace{1em}
+  \njnu@label@originalDate\hfill\hspace{3em}\njnu@label@originalDate
   \clearpage
   \if@twoside
     \thispagestyle{empty}
