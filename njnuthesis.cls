@@ -159,13 +159,13 @@
       \njnuunderline[100pt]{\njnu@value@confidential} % 密级
     \vskip 40pt
       \includegraphics[width=92mm]{njnutitle}
-    \vskip 20pt
+    \vskip 10pt
       \bf\heiti\zihao{-1} \njnu@value@degree\njnu@label@thesis
     \vskip 20pt
       \includegraphics[width=24mm]{njnulogo}
-    \vskip \stretch{1}
+    \vskip 20pt
       \bf\heiti\zihao{-1} \njnu@value@title
-    \vskip \stretch{2}
+    \vskip 40pt
     \begin{tabular}{lc}
       \bf\songti\zihao{4}\njnu@label@author ： &
       \bf\songti\zihao{4}\njnu@value@author
@@ -214,31 +214,29 @@
   \end{center}
   \vskip 10pt
   {\zihao{-4}\njnu@label@originalcontent}
-  %\vskip 60pt
-  %\hspace{13em}\njnu@label@authorsign\hrulefill\hspace{1.5em}
-  %\vskip 15pt
-  %\hspace{16em}\njnu@label@originalDate\hspace{1em}
-  \clearpage
-  \if@twoside
-    \thispagestyle{empty}
-    \cleardoublepage
-  \fi
+  \vskip 60pt
+  \njnu@label@authorsign
+  \hspace{5cm}\njnu@label@originalDate
+  %\clearpage
+  %\if@twoside
+  %  \thispagestyle{empty}
+  %  \cleardoublepage
+  %\fi
 }
 
 % 授权声明
 \newcommand\makeDeclareAuthorization{%
-  \cleardoublepage
-  \thispagestyle{empty}
+  %\cleardoublepage
+  %\thispagestyle{empty}
+  \vskip 60pt
   \begin{center}
-  {\bf\zihao{3} \njnu@value@school}\\
-  {\bf\zihao{3} \njnu@label@authorization}
+  	{\bf\zihao{3} \njnu@label@authorization}
   \end{center}
   \vskip 10pt
   {\zihao{-4} \njnu@label@authorizationcontent}
-  \vskip 60pt
-  
-  \njnu@label@authorsign\hrulefill\hspace{3em}\njnu@label@Supervisorsign\hrulefill
-  \vskip 15pt
+  \vskip 30pt
+  \njnu@label@authorsign\hspace{15em}\njnu@label@Supervisorsign
+  \vskip 10pt
   \njnu@label@originalDate\hfill\hspace{3em}\njnu@label@originalDate
   \clearpage
   \if@twoside
