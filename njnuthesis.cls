@@ -33,6 +33,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[cs4size,a4paper,fancyhdr,fntef]{ctexbook}[2005/11/25]
+\CTEXsetup[number={\arabic{chapter}}]{chapter}
 \ifnjnu@bachelor\relax\else
   \ifnjnu@master\relax\else
     \ifnjnu@doctor\relax\else
@@ -94,6 +95,9 @@
 \parskip 0.5ex plus 0.25ex minus 0.25ex
 %% 上边距
 \addtolength{\voffset}{-1.5cm}
+
+%% 行距20磅
+\setlength{\baselineskip}{20pt}
 
 %% Command -- Clear Double Page
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
