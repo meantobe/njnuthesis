@@ -33,7 +33,9 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 \LoadClass[cs4size,a4paper,fancyhdr,fntef]{ctexbook}[2005/11/25]
-\CTEXsetup[number={\arabic{chapter}}]{chapter}
+\CTEXsetup[number={\arabic{chapter}},titleformat={\bfseries\zihao{-3}},beforeskip={20pt},afterskip={20pt}]{chapter}
+\CTEXsetup[titleformat={\bfseries\zihao{4}},beforeskip={10pt},afterskip={10pt}]{section}
+\CTEXsetup[titleformat={\bfseries\zihao{-4}},beforeskip={10pt},afterskip={10pt}]{subsection}
 \ifnjnu@bachelor\relax\else
   \ifnjnu@master\relax\else
     \ifnjnu@doctor\relax\else
@@ -91,10 +93,11 @@
 \fi
 \textheight 24.2 true cm
 \textwidth 15.5 true cm
-\headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
+\headheight 0pt
+%% 段间距为0
+\parskip 0ex
 %% 上边距
-\addtolength{\voffset}{-1.5cm}
+\addtolength{\voffset}{-1.54cm}
 
 %% 行距20磅
 \setlength{\baselineskip}{20pt}
